@@ -11,15 +11,13 @@ router.put('/:id', function(req, res, next)
         var userToChangeSub = JSON.parse(data);
         var userChange = userToChangeSub.find(u => u.id == userId);
         userChange.subscribed = req.body.subscribed;
-        console.log(userChange);
-        console.log(userToChangeSub);
         var updatedUsers = JSON.stringify(userToChangeSub, null, 2);
         fs.writeFile('./user.json', updatedUsers, function(err)
         {
             if(err) throw err;
         });
     });
-    res.send(userChange);
+    res.send("Changed subscription");
 })
 
 module.exports = router;
