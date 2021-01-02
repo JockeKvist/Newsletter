@@ -12,5 +12,12 @@
     "email": "post@mail.com",
     "subscribed": false,
     "id": 2
+  },
+  {
+    "username": "test",
+    "password": "test",
+    "email": "hej",
+    "subscribed": "false",
+    "id": 3
   }
 ]

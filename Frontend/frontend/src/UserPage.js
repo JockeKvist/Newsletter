@@ -1,5 +1,5 @@
 import React from 'react';
-import App from './App';
+
 
 
 class UserPage extends React.Component
@@ -7,38 +7,34 @@ class UserPage extends React.Component
     constructor(props)
     {
       super(props);
-      this.state={ id:this.props.id, subscribed:this.props.subscribed  }
+      this.state={ id:this.props.id,
+        username:this.props.username,
+        subscribed:this.props.subscribed  }
+      this.handleSub = this.handleSub.bind(this);
+      
     }
     
     handleSub()
     {
       
-      var subChange = { id: id, subscribed: !subscribed }
+      var subChange = { id: this.state.id, subscribed: !this.state.subscribed }
+      this.setState({subscribed: !this.state.subscribed})
       fetch('http://localhost:3000/changesub/' + this.state.id,
             {
                 method: "PUT",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify(subChange)
-            }).then(response => 
-            {
-              if (response.username == login.username)
-              {
-                return(
-                <UserPage response/>
-                )
-              }
-              else
-              {<App />}
-            }
-              )
+            })
+              
     }
 
     render(){
+      console.log(this.state.id);
         return(
             <div>
-                <form onSubmit={this.handleSub}>
-                    <input type="submit" value="Change subscription" />
-                </form>
+              <label>Välkommen {this.state.username}</label><br />
+              <label>Premumenerar: {this.state.subscribed}</label><br />
+              <button onClick={this.handleSub}>Change subscription</button>
             </div>
         )
     }
