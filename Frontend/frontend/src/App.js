@@ -55,6 +55,7 @@ class App extends React.Component {
         return(
           <div>
         <RegisterNewUser />
+        <button onClick={this.registerNewUser}>Back to login</button>
         </div>
         )
       }
