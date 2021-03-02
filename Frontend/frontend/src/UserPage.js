@@ -14,11 +14,14 @@ class UserPage extends React.Component
       
     }
     
+
+
     handleSub()
     {
       
       var subChange = { id: this.state.id, subscribed: !this.state.subscribed }
-      this.setState({subscribed: !this.state.subscribed})
+      this.setState( prevState => ({subscribed: !prevState.subscribed}));
+    
       fetch('http://localhost:3000/changesub/' + this.state.id,
             {
                 method: "PUT",
@@ -26,14 +29,17 @@ class UserPage extends React.Component
                 body: JSON.stringify(subChange)
             })
               
+
     }
 
     render(){
+      console.log(this.state.username)
+      console.log(this.state.subscribed)
       console.log(this.state.id);
         return(
             <div>
               <label>Välkommen {this.state.username}</label><br />
-              <label>Premumenerar: {this.state.subscribed}</label><br />
+              {this.state.subscribed ? <label>Du prenumererar på newsletter</label> : <label>Du prenumererar inte på newsletter</label>}
               <button onClick={this.handleSub}>Change subscription</button>
             </div>
         )

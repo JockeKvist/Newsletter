@@ -19,5 +19,12 @@
     "email": "hej",
     "subscribed": "false",
     "id": 3
+  },
+  {
+    "username": "Jocke",
+    "password": "Jocke",
+    "email": "Jocke@Jocke.com",
+    "subscribed": false,
+    "id": 4
   }
 ]

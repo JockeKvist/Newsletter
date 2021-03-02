@@ -10,7 +10,7 @@ router.put('/:id', function(req, res, next)
         if(err) throw err;
         var userToChangeSub = JSON.parse(data);
         var userChange = userToChangeSub.find(u => u.id == userId);
-        userChange.subscribed = req.body.subscribed;
+        userChange.subscribed = !userChange.subscribed;
         var updatedUsers = JSON.stringify(userToChangeSub, null, 2);
         fs.writeFile('./user.json', updatedUsers, function(err)
         {
